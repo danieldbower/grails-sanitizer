@@ -44,13 +44,16 @@ def chooseSanitizingLevel(){
 
 		3) loose -- antisamy-myspace.xml
 		MySpace (http://www.myspace.com/) is arguably the most popular social networking site today. Users are allowed to submit pretty much all HTML and CSS they want - as long as it doesn't contain JavaScript. MySpace is currently using a word blacklist to validate users' HTML, which is why they were subject to the infamous Samy worm (http://namb.la/). The Samy worm, which used fragmentation attacks combined with a word that should have been blacklisted (eval) - was the inspiration for the project.
+
+		4)TinyMCE -- antisamy-tinymce.xml
+		TinyMCE is a popular javascript rich text editor used for input of html forms.  See the Antisamy website for more information on this rule file.
 		
-		4) do not write config, I will do it myself at web-app/WEB-INF/antisamy-policy.xml
+		5) do not write config, I will do it myself at web-app/WEB-INF/antisamy-policy.xml
 		"""
 
 	def message = "An Antisamy Configuration will be added to your project's web-app/WEB-INF directory.  Antisamy comes with several base policies for filtering, please choose the level of sanitization you would like to use:\n${descriptions}\n\nchoices: "
 	def propCode = "my.code"
-	def choices = "1,2,3,4"
+	def choices = "1,2,3,4,5"
 
 	String choice = userChoiceIs(message, propCode, choices)
 	String destfile = "${basedir}/web-app/WEB-INF/antisamy-policy.xml"
@@ -59,16 +62,22 @@ def chooseSanitizingLevel(){
 	  case "2":
 	    //moderate
 	    println "selected moderate"
-	    ant.copy(file: (srcdir + "antisamy-ebay-1.3.xml"), tofile:destfile, overwrite:true)
+	    ant.copy(file: (srcdir + "antisamy-ebay-1.4.3.xml"), tofile:destfile, overwrite:true)
 	    break
 
 	  case "3":
 	    //loose
 	    println "selected loose"
-	    ant.copy(file: (srcdir + "antisamy-myspace-1.3.xml"), tofile:destfile, overwrite:true)
+	    ant.copy(file: (srcdir + "antisamy-myspace-1.4.3.xml"), tofile:destfile, overwrite:true)
 	    break
-	    
-	  case "4":
+		
+	case "4":
+	    //tinymce
+	    println "selected tinymce"
+	    ant.copy(file: (srcdir + "antisamy-myspace-1.4.3.xml"), tofile:destfile, overwrite:true)
+	 break
+  
+	  case "5":
 		//leave alone
 		println "do nothing"  
 	   break
@@ -76,7 +85,7 @@ def chooseSanitizingLevel(){
 	  default:
 	    //strict
 	    println "selected strict"
-	    ant.copy(file: (srcdir + "antisamy-slashdot-1.3.xml"), tofile:destfile, overwrite:true)
+	    ant.copy(file: (srcdir + "antisamy-slashdot-1.4.3.xml"), tofile:destfile, overwrite:true)
 	    break
 	}	
 	
