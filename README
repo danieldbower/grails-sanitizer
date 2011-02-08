@@ -3,3 +3,7 @@ Grails Plugin for Sanitizing Markup using the Antisamy library.
 Project HomePage:  http://www.grails.org/plugin/sanitizer
 
 
+You can add this config value to Config.groovy
+sanitizer.trustSanitizer=true
+By default, if there is a message given by the sanitizer during cleaning, the sanitizer codec will return an empty string.  
+Setting trustSanitizer to true will allow you to ignore the messages issued by the sanitizer and just use the output.

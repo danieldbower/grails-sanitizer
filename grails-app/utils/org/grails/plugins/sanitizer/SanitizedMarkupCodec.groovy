@@ -1,6 +1,7 @@
 package org.grails.plugins.sanitizer
 
 import org.codehaus.groovy.grails.commons.ApplicationHolder;
+import org.codehaus.groovy.grails.commons.ConfigurationHolder;
 
 /**
  * Codec that allows you to sanitize a String
@@ -24,8 +25,8 @@ class SanitizedMarkupCodec {
 	
 		MarkupSanitizerResult result = markupSanitizerService.sanitize(dirtyMarkup)
 		
-		if(result.isInvalidMarkup()){
-			// :TODO  throw exception here??? or just return empty string...
+		if(result.isInvalidMarkup() && !ConfigurationHolder.config?.sanitizer?.trustSanitizer){
+			// just return empty string...
 			return "" 
 		}else{
 			return result.cleanString

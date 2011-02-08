@@ -15,15 +15,9 @@
  * 
  */
 
-//create sanitizer configuration directory
-//ant.mkdir(dir:"${basedir}/grails-app/conf/sanitizer")
-
 //Which configuration would you like?
 chooseSanitizingLevel()
 
-println "\n\nCreating Sanitizer Plugin Config file at:  ${basedir}/grails-app/conf/SanitizerConfig.groovy"
-ant.copy(file:"${pluginBasedir}/grails-app/conf/sanitizer/SanitizerConfig.groovy",
-		 todir:"${basedir}/grails-app/conf")
 /*
  * 
  * Done
@@ -57,7 +51,7 @@ def chooseSanitizingLevel(){
 
 	String choice = userChoiceIs(message, propCode, choices)
 	String destfile = "${basedir}/web-app/WEB-INF/antisamy-policy.xml"
-	String srcdir = "${sanitizerPluginDir}/grails-app/conf/sanitizer/"
+	String srcdir = "${sanitizerPluginDir}/scripts/antisamyConfigs/"
 	switch(choice){
 	  case "2":
 	    //moderate
