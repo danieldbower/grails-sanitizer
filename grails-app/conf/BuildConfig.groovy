@@ -30,7 +30,7 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.13'
 		
       runtime('org.owasp.antisamy:antisamy:1.4.3') {
-        excludes "xercesImpl", "xml-apis", 'xml-apis-ext'
+        excludes "xml-apis"
       }
     }
 }
