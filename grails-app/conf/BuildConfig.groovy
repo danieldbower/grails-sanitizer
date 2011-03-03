@@ -22,14 +22,15 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+        mavenRepo "https://repository.sonatype.org/content/repositories/central"
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
         // runtime 'mysql:mysql-connector-java:5.1.13'
 		
-		build ('org.owasp.antisamy:antisamy:1.4.3') {
-			excludes "xmlParserAPIs", "xml-apis";
-			}
+      runtime('org.owasp.antisamy:antisamy:1.4.3') {
+        excludes "xercesImpl", "xml-apis", 'xml-apis-ext'
+      }
     }
 }
