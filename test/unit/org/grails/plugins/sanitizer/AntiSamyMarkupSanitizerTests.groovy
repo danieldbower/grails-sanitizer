@@ -11,7 +11,7 @@ class AntiSamyMarkupSanitizerTests extends GrailsUnitTestCase {
         super.setUp()
         
         sanitizer = new AntiSamyMarkupSanitizer(
-        		new FileSystemResource("scripts/antisamyConfigs/antisamy-myspace-1.4.3.xml"))
+        		new FileSystemResource("scripts/antisamyConfigs/antisamy-myspace-1.4.4.xml"))
     }
 
     protected void tearDown() {

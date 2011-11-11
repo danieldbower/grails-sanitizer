@@ -9,7 +9,7 @@ class MarkupSanitizerServiceIntegrationTests extends GrailsUnitTestCase {
 	protected void setUp() {
         super.setUp()
         
-        markupSanitizerService.markupSanitizer = new AntiSamyMarkupSanitizer(new FileSystemResource("scripts/antisamyConfigs/antisamy-myspace-1.4.3.xml"))
+        markupSanitizerService.markupSanitizer = new AntiSamyMarkupSanitizer(new FileSystemResource("scripts/antisamyConfigs/antisamy-myspace-1.4.4.xml"))
     }
 
     protected void tearDown() {

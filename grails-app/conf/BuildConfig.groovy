@@ -16,8 +16,8 @@ grails.project.dependency.resolution = {
 
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
-        //mavenLocal()
-        //mavenCentral()
+        mavenLocal()
+        mavenCentral()
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -29,8 +29,11 @@ grails.project.dependency.resolution = {
 
         // runtime 'mysql:mysql-connector-java:5.1.13'
 		
-      runtime('org.owasp.antisamy:antisamy:1.4.3') {
+      runtime('org.owasp.antisamy:antisamy:1.4.4') {
         excludes "xml-apis"
       }
+	  runtime('net.sourceforge.nekohtml:nekohtml:1.9.15') {
+		  excludes "xml-apis"
+	  }
     }
 }

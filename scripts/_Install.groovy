@@ -61,19 +61,19 @@ def chooseSanitizingLevel(){
 	  case "2":
 	    //moderate
 	    println "selected moderate"
-	    ant.copy(file: (srcdir + "antisamy-ebay-1.4.3.xml"), tofile:DESTFILE, overwrite:true)
+	    ant.copy(file: (srcdir + "antisamy-ebay-1.4.4.xml"), tofile:DESTFILE, overwrite:true)
 	    break
 
 	  case "3":
 	    //loose
 	    println "selected loose"
-	    ant.copy(file: (srcdir + "antisamy-myspace-1.4.3.xml"), tofile:DESTFILE, overwrite:true)
+	    ant.copy(file: (srcdir + "antisamy-myspace-1.4.4.xml"), tofile:DESTFILE, overwrite:true)
 	    break
 		
 	case "4":
 	    //tinymce
 	    println "selected tinymce"
-	    ant.copy(file: (srcdir + "antisamy-myspace-1.4.3.xml"), tofile:DESTFILE, overwrite:true)
+	    ant.copy(file: (srcdir + "antisamy-myspace-1.4.4.xml"), tofile:DESTFILE, overwrite:true)
 	 break
   
 	  case "5":
@@ -84,7 +84,7 @@ def chooseSanitizingLevel(){
 	  default:
 	    //strict
 	    println "selected strict"
-	    ant.copy(file: (srcdir + "antisamy-slashdot-1.4.3.xml"), tofile:DESTFILE, overwrite:true)
+	    ant.copy(file: (srcdir + "antisamy-slashdot-1.4.4.xml"), tofile:DESTFILE, overwrite:true)
 	    break
 	}	
 	
