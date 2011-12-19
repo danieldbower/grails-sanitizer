@@ -21,7 +21,7 @@ class MarkupSanitizerService{
 	MarkupSanitizer getSanitizer(){
 		if(!markupSanitizer){
 			markupSanitizer = new AntiSamyMarkupSanitizer(
-				ApplicationHolder.application.parentContext.getResource( File.separator + "WEB-INF" + File.separator + "antisamy-policy.xml"))
+				ApplicationHolder.application.mainContext.getResource( File.separator + "WEB-INF" + File.separator + "antisamy-policy.xml"))
 		}
 		return markupSanitizer
 	}
