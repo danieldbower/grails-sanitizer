@@ -2,5 +2,6 @@
 .~lock*
 *.*.prod
 target/*
+target-eclipse
 web-app/WEB-INF/classes/*
 stacktrace.log
