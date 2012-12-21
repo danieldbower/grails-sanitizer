@@ -40,10 +40,10 @@ class AntiSamyMarkupSanitizer implements MarkupSanitizer{
 	 */
 	MarkupValidatorResult validateMarkup(String dirtyString){
 		CleanResults cr = runAntisamy(dirtyString)
-    	return validateMarkup(cr, dirtyString)
+    	return validateMarkupWithCleanResults(cr, dirtyString)
 	}
 	
-	private MarkupValidatorResult validateMarkup(CleanResults cr, String dirtyString){
+	private MarkupValidatorResult validateMarkupWithCleanResults(CleanResults cr, String dirtyString){
 		MarkupValidatorResult result = new MarkupValidatorResult(dirtyString: dirtyString)
         
 		//any error messages?
@@ -63,7 +63,7 @@ class AntiSamyMarkupSanitizer implements MarkupSanitizer{
 		CleanResults cr = runAntisamy(dirtyString)
 		
         //Create the default result to return
-        MarkupSanitizerResult result = new MarkupSanitizerResult(validateMarkup(cr, dirtyString))
+        MarkupSanitizerResult result = new MarkupSanitizerResult(validateMarkupWithCleanResults(cr, dirtyString))
         
         //the clean result
         if(cr.getCleanHTML()){
