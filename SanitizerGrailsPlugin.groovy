@@ -4,7 +4,7 @@ import org.grails.plugins.sanitizer.*;
 
 class SanitizerGrailsPlugin {
     // the plugin version
-    def version = "0.7.2"
+    def version = "0.8.0"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3.1 > *"
     // the other plugins this plugin depends on
