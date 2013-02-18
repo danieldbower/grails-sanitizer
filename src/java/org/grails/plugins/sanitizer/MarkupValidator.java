@@ -8,7 +8,7 @@ package org.grails.plugins.sanitizer;
 public interface MarkupValidator {
 	/**
 	 * Validate a string of Markup
-	 * 
+	 *
 	 * @param dirtyString
 	 * @return
 	 */
