@@ -20,4 +20,10 @@ grails.project.dependency.resolution = {
 			excludes "xml-apis"
 		}
 	}
+
+	plugins {
+		build ':release:2.2.0', ':rest-client-builder:1.0.3', {
+			export = false
+		}
+	}
 }
