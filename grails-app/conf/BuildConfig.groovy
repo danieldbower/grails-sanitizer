@@ -29,11 +29,6 @@ grails.project.dependency.resolution = {
 
         // runtime 'mysql:mysql-connector-java:5.1.13'
 		
-      runtime('org.owasp.antisamy:antisamy:1.4.5') {
-        excludes "xml-apis"
-      }
-	  runtime('net.sourceforge.nekohtml:nekohtml:1.9.15') {
-		  excludes "xml-apis"
-	  }
+      runtime('org.owasp.antisamy:antisamy:1.5.1')
     }
 }
