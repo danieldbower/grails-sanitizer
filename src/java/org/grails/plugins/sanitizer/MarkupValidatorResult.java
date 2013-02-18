@@ -9,11 +9,11 @@ import java.util.List;
  *
  */
 public class MarkupValidatorResult {
-	
+
 	private String dirtyString = "";
-	
+
 	private List<String> errorMessages = new ArrayList<String>();
-	                   
+
 	/**
 	 * Is the Markup invalid?
 	 * @return
@@ -21,7 +21,7 @@ public class MarkupValidatorResult {
 	public boolean isInvalidMarkup(){
 		return (errorMessages!=null && errorMessages.size()>0);
 	}
-	
+
 	/**
 	 * The String that was submitted for sanitizing
 	 */

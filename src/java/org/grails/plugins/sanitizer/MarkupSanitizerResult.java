@@ -1,14 +1,14 @@
 package org.grails.plugins.sanitizer;
 
 /**
- * results of the markup cleaning process 
+ * results of the markup cleaning process
  * @author daniel
  *
  */
 public class MarkupSanitizerResult extends MarkupValidatorResult {
-	
+
 	public MarkupSanitizerResult(){}
-	
+
 	/**
 	 * MarkupSanitizerResult extends MarkupValidatorResult, this constructor enables you to create a sanitizer result object from a validator result object
 	 * @param validator
@@ -17,7 +17,7 @@ public class MarkupSanitizerResult extends MarkupValidatorResult {
 		setDirtyString(validator.getDirtyString());
 		getErrorMessages().addAll(validator.getErrorMessages());
 	}
-	
+
 	private String cleanString = "";
 
 	/**
