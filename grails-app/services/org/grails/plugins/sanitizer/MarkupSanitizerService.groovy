@@ -1,18 +1,14 @@
-package org.grails.plugins.sanitizer;
-
-import java.io.File;
-
-import org.codehaus.groovy.grails.commons.ApplicationHolder;
-import org.springframework.core.io.FileSystemResource;
+package org.grails.plugins.sanitizer
 
 /**
- * A service for sanitizing Html Text in a string.  
+ * A service for sanitizing Html Text in a string.
  * @see http://www.owasp.org/index.php/AntiSamy
  * @author daniel
- *
  */
-class MarkupSanitizerService{
-	
+class MarkupSanitizerService {
+
+	def grailsApplication
+
 	protected MarkupSanitizer markupSanitizer
 
 	/**
@@ -21,11 +17,11 @@ class MarkupSanitizerService{
 	MarkupSanitizer getSanitizer(){
 		if(!markupSanitizer){
 			markupSanitizer = new AntiSamyMarkupSanitizer(
-				ApplicationHolder.application.mainContext.getResource( File.separator + "WEB-INF" + File.separator + "antisamy-policy.xml"))
+				grailsApplication.mainContext.getResource( File.separator + "WEB-INF" + File.separator + "antisamy-policy.xml"))
 		}
 		return markupSanitizer
 	}
-	
+
 	/**
 	 * Sanitize a string.
 	 * <p>Inject the Markup Sanitizer Service into your controller with:</p>
@@ -40,12 +36,11 @@ class MarkupSanitizerService{
 	 * @param dirtyString
 	 * @return markupSanitizerResult
 	 */
-    MarkupSanitizerResult sanitize(String dirtyString){
-        return getSanitizer().sanitize (dirtyString)
-    }
-    
-    
-    /**
+	MarkupSanitizerResult sanitize(String dirtyString){
+		return getSanitizer().sanitize (dirtyString)
+	}
+
+	/**
 	 * validate a string.
 	 * <p>Inject the Markup Sanitizer Service into your controller with:</p>
 	 * <pre>def markupSanitizerService</pre>
@@ -59,8 +54,7 @@ class MarkupSanitizerService{
 	 * @param dirtyString
 	 * @return markupValidatorResult
 	 */
-    MarkupValidatorResult validateMarkup(String htmlString){
-    	return getSanitizer().validateMarkup(htmlString)
-    }
-
+	MarkupValidatorResult validateMarkup(String htmlString){
+		return getSanitizer().validateMarkup(htmlString)
+	}
 }
