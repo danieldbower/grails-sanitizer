@@ -1,8 +1,9 @@
 *.swp
 .~lock*
 *.*.prod
-target/*
-target-eclipse
+target/
+test/app/*/target/
+target-eclipse/
 web-app
 *.log
 plugin.xml
