@@ -7,3 +7,4 @@ web-app
 *.log
 plugin.xml
 grails-sanitizer-*.zip
+grails-sanitizer-*.sha1
