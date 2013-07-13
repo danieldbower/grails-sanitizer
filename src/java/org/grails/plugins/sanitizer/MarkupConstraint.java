@@ -25,6 +25,7 @@ public class MarkupConstraint extends AbstractConstraint {
 	/**
 	 * Checks the input to verify that we can attempt to validate it.
 	 */
+	@SuppressWarnings("rawtypes")
 	public boolean supports(Class type) {
 		return type != null && String.class.isAssignableFrom(type);
 	}

@@ -3,7 +3,7 @@ import org.codehaus.groovy.grails.validation.ConstrainedProperty
 import org.grails.plugins.sanitizer.MarkupConstraint
 
 class SanitizerGrailsPlugin {
-	def version = "0.8.1"
+	def version = "0.8.2"
 	def grailsVersion = "2.0.0 > *"
 
 	def author = "Daniel Bower"
@@ -29,10 +29,8 @@ Features -
   - method MarkupValidatorResult validateMarkup(String htmlString)
   - effectively a singleton, which means the ruleset only needs to be read once on startup
 
-Please note the beta nature of the version number.  This plugin has not been extensively tested.  Please feel
-free to send me any results of any testing you may do.
-
-This module does not sanitize a string that does not contain valid markup.  If it does not contain
+This module does not sanitize a string that does not contain valid markup.  
+It simply validates whether the string contains 'safe' html.  If it does not contain
 valid markup, it will simply return an empty string.
 '''
 
