@@ -1,9 +1,11 @@
 *.swp
 .~lock*
 *.*.prod
-target/*
-target-eclipse
+target/
+test/app/*/target/
+target-eclipse/
 web-app
 *.log
 plugin.xml
 grails-sanitizer-*.zip
+grails-sanitizer-*.sha1
