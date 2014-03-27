@@ -13,7 +13,7 @@ grails.project.dependency.resolution = {
 	}
 
 	dependencies {
-		compile('org.owasp.antisamy:antisamy:1.5.1')
+		compile('org.owasp.antisamy:antisamy:1.5.3')
 		runtime('net.sourceforge.nekohtml:nekohtml:1.9.16') {
 			excludes "xml-apis"
 		}

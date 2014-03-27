@@ -43,7 +43,7 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.20'
 		
 		//transitive dependencies seem to barf when using inline plugins on Grails 2.2.0.  Specifying again here:
-		compile('org.owasp.antisamy:antisamy:1.5.1')
+		compile('org.owasp.antisamy:antisamy:1.5.3')
     }
 
     plugins {
