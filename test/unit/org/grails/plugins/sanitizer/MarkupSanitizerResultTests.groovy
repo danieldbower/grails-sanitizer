@@ -4,18 +4,21 @@ import grails.test.*
 
 class MarkupSanitizerResultTests extends GrailsUnitTestCase {
 
-	void testSpecialConstructor() {
-		def vResult = new MarkupValidatorResult()
-		vResult.dirtyString = "vTest"
-		vResult.errorMessages.add "vError1"
+	void testSimpleProperties(){
 
-		MarkupSanitizerResult sResult = new MarkupSanitizerResult(vResult)
-		assertEquals("vTest", sResult.dirtyString)
-		assertEquals("vError1", sResult.errorMessages[0])
-	}
+		def val = new MarkupSanitizerResult()
+		assertFalse(val.isInvalid())
 
-	void testSimplePropertyTest() {
-		def vResult = new MarkupSanitizerResult()
-		MarkupValidatorResultTests.simplePropertyTests vResult
+		val.dirtyString = "test"
+		assertFalse(val.isInvalid())
+
+		val.errorMessages.add("error1")
+		assertTrue(val.isInvalid())
+
+		val.errorMessages.add("error2")
+		assertTrue(val.isInvalid())
+
+		val.errorMessages.clear()
+		assertFalse(val.isInvalid())
 	}
 }

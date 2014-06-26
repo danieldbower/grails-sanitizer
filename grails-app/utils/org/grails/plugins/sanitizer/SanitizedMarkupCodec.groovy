@@ -1,7 +1,6 @@
 package org.grails.plugins.sanitizer
 
-import org.codehaus.groovy.grails.commons.ApplicationHolder
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import grails.util.Holders
 
 /**
  * Codec that allows you to sanitize a String
@@ -12,7 +11,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder
  */
 class SanitizedMarkupCodec {
 
-	def markupSanitizerService
+	MarkupSanitizerService markupSanitizerService
 
 	/**
 	 * Encode a string as sanitized Markup
@@ -20,16 +19,20 @@ class SanitizedMarkupCodec {
 	def encode = { dirtyMarkup ->
 
 		if(!markupSanitizerService){
-			markupSanitizerService = ApplicationHolder.application.mainContext.getBean("markupSanitizerService")
+			markupSanitizerService = Holders.applicationContext.getBean("markupSanitizerService")
 		}
 
 		MarkupSanitizerResult result = markupSanitizerService.sanitize(dirtyMarkup)
 
-		if(result.isInvalidMarkup() && !ConfigurationHolder.config?.sanitizer?.trustSanitizer){
+		if(result.isInvalid() && !Holders.config?.sanitizer?.trustSanitizer){
 			// just return empty string...
 			return ""
 		}else{
 			return result.cleanString
 		}
+	}
+	
+	static decode = {
+		throw new UnsupportedOperationException("Cannot dirty a string")
 	}
 }

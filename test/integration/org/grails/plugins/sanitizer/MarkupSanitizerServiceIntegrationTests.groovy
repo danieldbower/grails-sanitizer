@@ -8,8 +8,6 @@ class MarkupSanitizerServiceIntegrationTests extends GroovyTestCase {
 
 	protected void setUp() {
 		super.setUp()
-
-		markupSanitizerService.markupSanitizer = new AntiSamyMarkupSanitizer(new FileSystemResource("scripts/antisamyConfigs/antisamy-myspace-1.4.4.xml"))
 	}
 
 	void testServiceIsAlive() {
@@ -31,13 +29,29 @@ class MarkupSanitizerServiceIntegrationTests extends GroovyTestCase {
 	 * @param testString
 	 */
 	void assertValidTrue(String testString){
-		def result = markupSanitizerService.validateMarkup(testString)
+		def result = markupSanitizerService.validate(testString)
 
-		if(result.isInvalidMarkup()){
+		if(result.isInvalid()){
 			println(result.errorMessages)
 		}
 
-		assertFalse(result.isInvalidMarkup())
+		assertFalse(result.isInvalid())
+	}
+
+	void testSanitizeSanity(){
+		assertSanitized("sanitize", "sanitize")
+	}
+
+	void testValidateSanity(){
+		assertValidTrue("sanitize")
+	}
+
+	void testSanitizeHtml(){
+		assertSanitized("<div>sanitize</div>", "<div>sanitize</div>")
+	}
+
+	void testValidateHtml(){
+		assertValidTrue("<div>sanitize</div>")
 	}
 
 	void testSanitizeHtmlScriptTag(){
@@ -46,11 +60,7 @@ class MarkupSanitizerServiceIntegrationTests extends GroovyTestCase {
 
 	void testSanitizeHtmlScriptTagWithErrors(){
 		MarkupSanitizerResult result = markupSanitizerService.sanitize("<script><script><div>sanitize</div>")
-		assertTrue(result.isInvalidMarkup())
+		assertTrue(result.isInvalid())
 	}
 
-	void testValidateHtmlScriptTagWithErrors(){
-		MarkupValidatorResult result = markupSanitizerService.validateMarkup("<script><script><div>sanitize</div>")
-		assertTrue(result.isInvalidMarkup())
-	}
 }

@@ -1,5 +1,6 @@
 package org.codehaus.groovy.grails.validation
 
+import org.apache.commons.logging.LogFactory
 import org.codehaus.groovy.grails.exceptions.GrailsDomainException
 import org.springframework.context.ApplicationContext
 import org.springframework.util.Assert
@@ -10,6 +11,8 @@ import org.springframework.util.Assert
  *
  */
 class ApplicationContextAwareConstraintFactory implements ConstraintFactory {
+	
+	private static final log = LogFactory.getLog(this.getClass());
 
 	private Class constraintClass
 	private ApplicationContext applicationContext

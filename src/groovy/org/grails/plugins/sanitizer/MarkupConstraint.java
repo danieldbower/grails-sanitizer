@@ -32,9 +32,9 @@ public class MarkupConstraint extends AbstractConstraint {
 
 	@Override
 	public void processValidate(Object target, Object propertyValue, Errors errors){
-		MarkupValidatorResult result = markupSanitizerService.validateMarkup((String) propertyValue);
+		MarkupSanitizerResult result = markupSanitizerService.sanitize((String) propertyValue);
 
-		if (result.isInvalidMarkup()) {
+		if (result.isInvalid()) {
 
 			String errorMesg = (null!=result.getErrorMessages()) ? result.getErrorMessages().toString() : "Invalid Markup entered";
 

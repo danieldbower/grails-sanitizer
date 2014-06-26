@@ -1,8 +1,7 @@
 package org.grails.plugins.sanitizer
 
 import grails.test.*
-
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import grails.util.Holders
 
 class SanitizedMarkupCodecIntegrationTests extends GroovyTestCase {
 
@@ -13,14 +12,14 @@ class SanitizedMarkupCodecIntegrationTests extends GroovyTestCase {
 	}
 
 	void testTrustedSanitizerFixTag() {
-		ConfigurationHolder.config?.sanitizer= [trustSanitizer: true]
+		Holders.config?.sanitizer= [trustSanitizer: true]
 
 		String my = "<p>my paragraph<p>"
 		assertEquals("<p>my paragraph</p>", my.encodeAsSanitizedMarkup())
 	}
 
 	void testTrustedSanitizerStripScript() {
-		ConfigurationHolder.config?.sanitizer= [trustSanitizer: true]
+		Holders.config?.sanitizer= [trustSanitizer: true]
 
 		String my = "<script></script><p>my paragraph</p>"
 		assertEquals("<p>my paragraph</p>", my.encodeAsSanitizedMarkup())
