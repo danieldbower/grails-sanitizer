@@ -3,7 +3,7 @@ import org.codehaus.groovy.grails.validation.ConstrainedProperty
 import org.grails.plugins.sanitizer.MarkupConstraint
 
 class SanitizerGrailsPlugin {
-	def version = "0.8.2"
+	def version = "0.9.1"
 	def grailsVersion = "2.0.0 > *"
 
 	def author = "Daniel Bower"
