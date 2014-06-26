@@ -12,7 +12,7 @@ import org.springframework.util.Assert
  */
 class ApplicationContextAwareConstraintFactory implements ConstraintFactory {
 	
-	private static final log = LogFactory.getLog(this.getClass());
+	private static final log = LogFactory.getLog(this)
 
 	private Class constraintClass
 	private ApplicationContext applicationContext

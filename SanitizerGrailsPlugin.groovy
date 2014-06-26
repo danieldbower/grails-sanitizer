@@ -5,7 +5,7 @@ import org.grails.plugins.sanitizer.MarkupSanitizerService
 import org.springframework.core.io.ClassPathResource
 
 class SanitizerGrailsPlugin {
-	def version = "0.8.5"
+	def version = "0.9.1"
 	def grailsVersion = "2.2.0 > *"
 
 	def author = "Daniel Bower"

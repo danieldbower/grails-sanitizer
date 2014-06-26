@@ -5,7 +5,7 @@ package org.grails.plugins.sanitizer;
  * @author daniel
  *
  */
-public class MarkupSanitizerResult {
+class MarkupSanitizerResult {
 
 	/**
 	 * The String that was submitted for sanitizing

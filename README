@@ -2,8 +2,28 @@ Grails Plugin for Sanitizing Markup using the Antisamy library.
 
 Project HomePage:  http://www.grails.org/plugin/sanitizer
 
+To Install add it to your BuildConfig.groovy:
+build ":sanitizer:0.9.0"
+
+Once you've compiled the project after adding the above line, install your preferred
+antisamy policy with:
+grails antisamy 1
+Where 1 is the number of the policy.  You can get the policy numbers by running
+grails antisamy
+
+From there, you can use antisamy from the MarkupSanitizerServce, the SanitzedMarkupCodec, or the Domain Constraint.
 
 You can add this config value to Config.groovy
 sanitizer.trustSanitizer=true
 By default, if there is a message given by the sanitizer during cleaning, the sanitizer codec will return an empty string.  
 Setting trustSanitizer to true will allow you to ignore the messages issued by the sanitizer and just use the output.
+
+
+In Progress:
+Simplify plugin so as to be easily maintainable
+Store sanitizer files in src tree to be selected by config
+
+TODO:
+Optionally export sanitizer files to WEB-INF for modification
+Update test plugins for changes
+Fix Tests

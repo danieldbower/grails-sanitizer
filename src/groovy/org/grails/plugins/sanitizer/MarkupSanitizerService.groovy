@@ -70,7 +70,7 @@ class MarkupSanitizerService {
 			result.cleanString = cr.getCleanHTML()
 		}
 		
-		log.debug "Dirty: $dirtyString, Cleaned: ${result.cleanString}, Number Erros: ${cr.errorMessages?.size()}"
+		log.debug "Dirty: $dirtyString, Cleaned: ${result.cleanString}, Number Errors: ${cr.errorMessages?.size()}"
 
 		return result
 	}
