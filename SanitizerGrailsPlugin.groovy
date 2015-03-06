@@ -36,19 +36,15 @@ valid markup, it will simply return an empty string.
 	def documentation = "http://grails.org/plugin/sanitizer"
 
 	def doWithSpring = {
-		println "Do with Spring"
-		
 		if(application.config.sanitizer.config){
 			policyFileResource(ClassPathResource, application.config.sanitizer.config)
-			markupSanitzerService(MarkupSanitizerService, ref('policyFileResource'))
+			markupSanitizerService(MarkupSanitizerService, ref('policyFileResource'))
 		}else{
-			markupSanitzerService(MarkupSanitizerService)
+			markupSanitizerService(MarkupSanitizerService)
 		}
 	}
 	
 	def doWithApplicationContext = { applicationContext ->
-		println "Do with Application Context"
-		
 		def factory = new ApplicationContextAwareConstraintFactory(
 			applicationContext, MarkupConstraint, ["markupSanitizerService"])
 		ConstrainedProperty.registerNewConstraint(MarkupConstraint.MARKUP_CONSTRAINT, factory)

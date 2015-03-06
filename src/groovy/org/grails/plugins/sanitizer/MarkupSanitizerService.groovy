@@ -4,7 +4,7 @@ import org.apache.commons.logging.LogFactory
 import org.owasp.validator.html.AntiSamy
 import org.owasp.validator.html.CleanResults
 import org.owasp.validator.html.Policy
-import org.springframework.core.io.FileSystemResource
+import org.springframework.core.io.ClassPathResource
 import org.springframework.core.io.Resource
 
 /**
@@ -26,7 +26,7 @@ class MarkupSanitizerService {
 	}
 	
 	MarkupSanitizerService(){
-		Resource policyFile = new FileSystemResource("antisamyconfigs/antisamy-slashdot-1.4.4.xml")
+		Resource policyFile = new ClassPathResource("antisamyconfigs/antisamy-slashdot-1.4.4.xml")
 		
 		log.info('Initializing MarkupSanitizerService with ' + policyFile.filename)
 		policy = Policy.getInstance(policyFile.getFile())

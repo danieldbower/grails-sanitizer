@@ -33,6 +33,6 @@ class SanitizedMarkupCodec {
 	}
 	
 	static decode = {
-		throw new UnsupportedOperationException("Cannot dirty a string")
+		throw new UnsupportedOperationException("Cannot make a dirty string.")
 	}
 }

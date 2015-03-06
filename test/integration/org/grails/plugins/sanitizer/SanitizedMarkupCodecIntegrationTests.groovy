@@ -9,6 +9,14 @@ class SanitizedMarkupCodecIntegrationTests extends GroovyTestCase {
 
 	GrailsApplication grailsApplication
 	
+	void testValid() {
+		assertEquals "test", codec.encode("test")
+	}
+
+	void testInValid() {
+		assertEquals "", codec.encode("<script></script>test")
+	}
+
 	void testHappyPath() {
 		String my = "<p>my paragraph</p>"
 

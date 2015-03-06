@@ -27,6 +27,6 @@ class MarkupSanitizerResult {
 	 * @return
 	 */
 	boolean isInvalid(){
-		return !(errorMessages?.isEmpty());
+		return !(errorMessages?.isEmpty())
 	}
 }
