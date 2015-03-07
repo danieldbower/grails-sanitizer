@@ -15,21 +15,28 @@ import org.springframework.core.io.Resource
 class MarkupSanitizerService {
 
 	/**
-	 * Provide a policy file for antisamy
-	 * @param policyFile
+	 * Selects a policy file for antisamy
 	 * 
-	 * By default use the antisamy policy in WEB-INF
+	 * By default use the slashdot antisamy process, use custom path if defined,
+	 * or antisamyconfigs/antisamy-policy.com if it exists
 	 */
 	MarkupSanitizerService(Resource policyFile){
-		log.info('Initializing MarkupSanitizerService with ' + policyFile.filename)
-		policy = Policy.getInstance(policyFile.getFile())
-	}
-	
-	MarkupSanitizerService(){
-		Resource policyFile = new ClassPathResource("antisamyconfigs/antisamy-slashdot-1.4.4.xml")
-		
-		log.info('Initializing MarkupSanitizerService with ' + policyFile.filename)
-		policy = Policy.getInstance(policyFile.getFile())
+		//first, set to default
+		Resource selectedPolicyFile = new ClassPathResource("antisamyconfigs/antisamy-slashdot-1.4.4.xml")
+
+		Resource customPolicy = new ClassPathResource("antisamyconfigs/antisamy-policy.xml")
+		// if a custom policy exists use that
+		if(customPolicy.exists()){
+			selectedPolicyFile = customPolicy
+		}
+
+		//If there is a custom path use that one
+		if(policyFile.exists()){
+			selectedPolicyFile = policyFile
+		}
+
+		log.info('Initializing MarkupSanitizerService with ' + selectedPolicyFile.filename)
+		policy = Policy.getInstance(selectedPolicyFile.getFile())
 	}
 	
 	/**

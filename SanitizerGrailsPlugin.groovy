@@ -36,12 +36,8 @@ valid markup, it will simply return an empty string.
 	def documentation = "http://grails.org/plugin/sanitizer"
 
 	def doWithSpring = {
-		if(application.config.sanitizer.config){
-			policyFileResource(ClassPathResource, application.config.sanitizer.config)
-			markupSanitizerService(MarkupSanitizerService, ref('policyFileResource'))
-		}else{
-			markupSanitizerService(MarkupSanitizerService)
-		}
+		policyFileResource(ClassPathResource, application.config.sanitizer.config?:'does not exist')
+		markupSanitizerService(MarkupSanitizerService, ref('policyFileResource'))
 	}
 	
 	def doWithApplicationContext = { applicationContext ->

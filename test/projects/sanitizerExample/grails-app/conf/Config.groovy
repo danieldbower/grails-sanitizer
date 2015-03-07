@@ -88,4 +88,7 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+	debug 'org.grails.plugins.sanitizer'
 }
+
+//sanitizer.config = 'antisamyconfigs/antisamy-myspace-1.4.4.xml'

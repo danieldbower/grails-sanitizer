@@ -8,10 +8,11 @@ target(setup:'Install AntiSamy Policy'){
 	depends(classpath, checkVersion, compile)
 	
 	String message = """
-An Antisamy Configuration should be added to your project in the 
-web-app/WEB-INF directory.  Antisamy comes with several base policies 
-for filtering, please choose the level of sanitization you would like 
-to use:
+Antisamy can be configured by using a policy file.  You can use one of the 
+policy files provided with Antisamy, or you can use a custom policy file.  
+If you choose to create a custom policy file, it is best to start from one of the
+provided versions.  You can do so by selecting one below and then editing
+it in the src/groovy/antisamyconfigs directory of your project.
 
 These files and descriptions come from the AntiSamy site.
 
@@ -60,8 +61,8 @@ where 1 is the number of the policy above.
 		exit 1
 	}
 	
-	String srcdir = "${sanitizerPluginDir}/scripts/antisamyConfigs/"
-	String destFileName = "${basedir}/web-app/WEB-INF/antisamy-policy.xml"
+	String srcdir = "${sanitizerPluginDir}/src/groovy/antisamyconfigs/"
+	String destFileName = "${basedir}/src/groovy/antisamyconfigs/antisamy-policy.xml"
 	
 	printMessage("Grabbing source antisamy configs from: $srcdir \n Installing to: $destFileName \n ")
 	
