@@ -29,7 +29,7 @@ class MarkupSanitizerServiceIntegrationTests extends GroovyTestCase {
 	 * @param testString
 	 */
 	void assertValidTrue(String testString){
-		def result = markupSanitizerService.validate(testString)
+		def result = markupSanitizerService.sanitize(testString)
 
 		if(result.isInvalid()){
 			println(result.errorMessages)
