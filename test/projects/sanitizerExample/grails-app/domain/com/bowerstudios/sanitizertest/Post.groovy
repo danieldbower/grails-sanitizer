@@ -8,6 +8,6 @@ class Post {
 	
 	static constraints = {
 		author nullable: false
-		content nullable:false
+		content nullable:false, markup:true
 	}
 }
