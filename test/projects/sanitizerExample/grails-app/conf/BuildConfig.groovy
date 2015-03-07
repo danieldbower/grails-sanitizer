@@ -40,25 +40,22 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
-        // runtime 'mysql:mysql-connector-java:5.1.20'
-		
-		//transitive dependencies seem to barf when using inline plugins on Grails 2.2.0.  Specifying again here:
-		compile('org.owasp.antisamy:antisamy:1.5.3')
+        // runtime 'mysql:mysql-connector-java:5.1.22'
     }
 
     plugins {
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
-        runtime ":resources:1.1.6"
+        runtime ":resources:1.2.8"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
         //runtime ":cached-resources:1.0"
-        //runtime ":yui-minify-resources:0.1.4"
+        //runtime ":yui-minify-resources:0.1.5"
 
         build ":tomcat:$grailsVersion"
 
-        runtime ":database-migration:1.2.1"
+        runtime ":database-migration:1.3.8"
 
         compile ':cache:1.0.1'
     }
