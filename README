@@ -2,16 +2,44 @@ Grails Plugin for Sanitizing Markup using the Antisamy library.
 
 Project HomePage:  http://www.grails.org/plugin/sanitizer
 
-To Install add it to your BuildConfig.groovy:
-build ":sanitizer:0.9.0"
+Description:
+Plugin for Sanitizing Markup(HTML, XHTML, CSS) using OWASP AntiSamy. Filters malicious content from User generated content (such as that entered through Rich Text boxes).
 
-Once you've compiled the project after adding the above line, install your preferred
-antisamy policy with:
-grails antisamy 1
-Where 1 is the number of the policy.  You can get the policy numbers by running
-grails antisamy
 
-From there, you can use antisamy from the MarkupSanitizerServce, the SanitzedMarkupCodec, or the Domain Constraint.
+Features
+    1. Configurable Rulesets in src/groovy/antisamyconfigs/antisamy-policy.xml
+
+    2. Constraint "markup"
+        can be added to domain/command classes to validate that a string is valid and safe markup
+        important note: The constraint is for validation only, it does not sanitize the string
+
+    3. Encoding-only Codec "myText.encodeAsSanitizedMarkup()"
+        use the codec or the service to sanitize the string
+       (the codec uses the service, too)
+
+    4. MarkupSanitizerService
+        use the codec or the service to sanitize the string
+        access in your controllers/services via
+
+        def markupSanitizerService
+
+        method MarkupSanitizerResult sanitize(String dirtyString)
+            effectively a singleton, which means the ruleset only needs to be read once on startup
+
+
+Installation
+    1.  Add to your BuildConfig.groovy:
+        build ":sanitizer:0.10.0"
+    2.  "grails compile" to download/install/compile the plugin
+    3.  From there, you can use antisamy from the MarkupSanitizerServce, the SanitzedMarkupCodec, or the Domain Constraint.
+
+Select a Policy (Optional)
+The default policy is quite strict, however, you can modify it in several ways:
+1.  Run "grails antisamy" to get a list of policies to choose from.
+    Run "grails antisamy 1" to select the first policy, or the one you want.
+2.  Do the above and customize the contents of the file at:  src/groovy/antisamyconfigs/antisamy-policy.xml
+3.  Provide your own policy file and add a config item such as:
+    sanitizer.config = 'antisamyconfigs/antisamy-myspace-1.4.4.xml'
 
 You can add this config value to Config.groovy
 sanitizer.trustSanitizer=true
@@ -19,11 +47,31 @@ By default, if there is a message given by the sanitizer during cleaning, the sa
 Setting trustSanitizer to true will allow you to ignore the messages issued by the sanitizer and just use the output.
 
 
-In Progress:
-Simplify plugin so as to be easily maintainable
-Store sanitizer files in src tree to be selected by config
+Constraint example:
+In your domain/command object add a constraint to inform the user if they've submitted invalid markup:
 
-TODO:
-Optionally export sanitizer files to WEB-INF for modification
-Update test plugins for changes
-Fix Tests
+static constraints = {
+  myTextProperty(maxSize: 65000, markup:true)
+}
+
+
+Codec example:
+On strings, you can use the codec to clean a value:
+newsItemInstance.text = newsItemInstance.text.encodeAsSanitizedMarkup()
+
+
+Service Example:
+Use the sanitizer as follows in controllers or other services:
+
+import org.grails.plugins.sanitizer.MarkupSanitizerResult
+...
+// inject service def markupSanitizerService
+...
+// implement the sanitizer in a method of your choice 
+MarkupSanitizerResult result = markupSanitizerService.sanitize(input) 
+if(!result.isInvalidMarkup()) { 
+    //return result.cleanString 
+} else { 
+    //return result.errorMessages 
+    //return result.cleanString 
+}
