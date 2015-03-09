@@ -1,17 +1,14 @@
 package org.grails.plugins.sanitizer
 
-import org.springframework.core.io.FileSystemResource
+import org.junit.Test
 
-class MarkupSanitizerServiceIntegrationTests extends GroovyTestCase {
+class MarkupSanitizerServiceIntegrationTests {
 
 	def markupSanitizerService
 
-	protected void setUp() {
-		super.setUp()
-	}
-
+	@Test
 	void testServiceIsAlive() {
-		assertNotNull(markupSanitizerService)
+		assert(markupSanitizerService)
 	}
 
 	/**
@@ -20,7 +17,7 @@ class MarkupSanitizerServiceIntegrationTests extends GroovyTestCase {
 	 * @param testString
 	 */
 	void assertSanitized(String expectation, String testString){
-		assertEquals(expectation, markupSanitizerService.sanitize(testString).cleanString)
+		assert(expectation == markupSanitizerService.sanitize(testString).cleanString)
 	}
 
 	/**
@@ -35,32 +32,38 @@ class MarkupSanitizerServiceIntegrationTests extends GroovyTestCase {
 			println(result.errorMessages)
 		}
 
-		assertFalse(result.isInvalid())
+		assert(!result.isInvalid())
 	}
 
+	@Test
 	void testSanitizeSanity(){
 		assertSanitized("sanitize", "sanitize")
 	}
 
+	@Test
 	void testValidateSanity(){
 		assertValidTrue("sanitize")
 	}
 
+	@Test
 	void testSanitizeHtml(){
 		assertSanitized("<div>sanitize</div>", "<div>sanitize</div>")
 	}
 
+	@Test
 	void testValidateHtml(){
 		assertValidTrue("<div>sanitize</div>")
 	}
 
+	@Test
 	void testSanitizeHtmlScriptTag(){
 		assertSanitized("<div>sanitize</div>", "<script></script><div>sanitize</div>")
 	}
 
+	@Test
 	void testSanitizeHtmlScriptTagWithErrors(){
 		MarkupSanitizerResult result = markupSanitizerService.sanitize("<script><script><div>sanitize</div>")
-		assertTrue(result.isInvalid())
+		assert(result.isInvalid())
 	}
 
 }

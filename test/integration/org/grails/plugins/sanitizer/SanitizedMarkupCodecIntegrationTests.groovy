@@ -1,39 +1,43 @@
 package org.grails.plugins.sanitizer
 
 import grails.test.*
-import grails.util.Holders
 
 import org.codehaus.groovy.grails.commons.GrailsApplication
+import org.junit.Test
 
-class SanitizedMarkupCodecIntegrationTests extends GroovyTestCase {
+class SanitizedMarkupCodecIntegrationTests {
 
 	GrailsApplication grailsApplication
 
+	@Test
 	void testHappyPath() {
 		String my = "<p>my paragraph</p>"
-		assertEquals("<p>my paragraph</p>", my.encodeAsSanitizedMarkup())
+		assert("<p>my paragraph</p>" == my.encodeAsSanitizedMarkup())
 	}
 
+	@Test
 	void testFailure() {
 		grailsApplication.config?.sanitizer= [trustSanitizer: false]
 
 		String my = "<script></script><p>my paragraph</p>"
-		assertEquals("", my.encodeAsSanitizedMarkup())
+		assert("" == my.encodeAsSanitizedMarkup())
 	}
 
+	@Test
 	void testTrustedSanitizerFixTag() {
 		//Holders.config?.sanitizer= [trustSanitizer: true]
 		grailsApplication.config?.sanitizer= [trustSanitizer: true]
 
 		String my = "<p>my paragraph<p>"
-		assertEquals("<p>my paragraph</p>", my.encodeAsSanitizedMarkup())
+		assert("<p>my paragraph</p>" == my.encodeAsSanitizedMarkup())
 	}
 
+	@Test
 	void testTrustedSanitizerStripScript() {
 		//Holders.config?.sanitizer= [trustSanitizer: true]
 		grailsApplication.config?.sanitizer= [trustSanitizer: true]
 
 		String my = "<script></script><p>my paragraph</p>"
-		assertEquals("<p>my paragraph</p>", my.encodeAsSanitizedMarkup())
+		assert("<p>my paragraph</p>" == my.encodeAsSanitizedMarkup())
 	}
 }
