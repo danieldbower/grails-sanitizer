@@ -31,6 +31,8 @@ Installation
     1.  Add to your BuildConfig.groovy:
         (For Grails 2.2.x)
         build ":sanitizer:0.10.0"
+        (For Grails 2.3.x)
+        build ":sanitizer:0.11.0"
     2.  "grails compile" to download/install/compile the plugin
     3.  From there, you can use antisamy from the MarkupSanitizerServce, the SanitzedMarkupCodec, or the Domain Constraint.
 
