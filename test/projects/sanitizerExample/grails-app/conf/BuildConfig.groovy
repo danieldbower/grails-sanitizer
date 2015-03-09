@@ -1,8 +1,8 @@
 grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
 
 grails.project.work.dir = 'target' 
-grails.project.target.level = 1.6
-grails.project.source.level = 1.6
+grails.project.target.level = 1.7
+grails.project.source.level = 1.7
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 // uncomment (and adjust settings) to fork the JVM to isolate classpaths
@@ -44,8 +44,8 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.8.3"
+        runtime ":hibernate4:4.3.5.4"
+        runtime ":jquery:1.10.2"
         runtime ":resources:1.2.8"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
@@ -53,11 +53,11 @@ grails.project.dependency.resolution = {
         //runtime ":cached-resources:1.0"
         //runtime ":yui-minify-resources:0.1.5"
 
-        build ":tomcat:$grailsVersion"
+        build ":tomcat:7.0.55"
 
-        runtime ":database-migration:1.3.8"
+        runtime ":database-migration:1.4.0"
 
-        compile ':cache:1.0.1'
+        compile ':cache:1.1.8'
     }
 }
 

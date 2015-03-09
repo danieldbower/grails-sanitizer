@@ -2,23 +2,24 @@ package org.grails.plugins.sanitizer
 
 import grails.test.*
 
-class MarkupSanitizerResultTests extends GrailsUnitTestCase {
+class MarkupSanitizerResultTests {
 
+	@Test
 	void testSimpleProperties(){
 
 		def val = new MarkupSanitizerResult()
-		assertFalse(val.isInvalid())
+		assert(!val.isInvalid())
 
 		val.dirtyString = "test"
-		assertFalse(val.isInvalid())
+		assert(!val.isInvalid())
 
 		val.errorMessages.add("error1")
-		assertTrue(val.isInvalid())
+		assert(val.isInvalid())
 
 		val.errorMessages.add("error2")
-		assertTrue(val.isInvalid())
+		assert(val.isInvalid())
 
 		val.errorMessages.clear()
-		assertFalse(val.isInvalid())
+		assert(!val.isInvalid())
 	}
 }
