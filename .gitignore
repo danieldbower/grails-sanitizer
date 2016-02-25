@@ -9,3 +9,4 @@ web-app
 plugin.xml
 grails-sanitizer-*.zip
 grails-sanitizer-*.sha1
+.idea
